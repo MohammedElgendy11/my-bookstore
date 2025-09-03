@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Literary Bookstore Design System */
+@layer base {
+  :root {
+    /* Base colors - warm, literary palette */
+    --background: 45 15% 97%;
+    --foreground: 25 15% 15%;
+
+    /* Card system */
+    --card: 0 0% 100%;
+    --card-foreground: 25 15% 15%;
+
+    /* Interactive elements */
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 15% 15%;
+
+    /* Brand colors - deep forest and warm browns */
+    --primary: 158 45% 25%;
+    --primary-foreground: 45 15% 97%;
+    --primary-hover: 158 45% 20%;
+
+    /* Secondary palette */
+    --secondary: 32 25% 85%;
+    --secondary-foreground: 25 15% 15%;
+
+    /* Muted tones */
+    --muted: 45 10% 92%;
+    --muted-foreground: 25 10% 45%;
+
+    /* Accent - warm amber */
+    --accent: 32 85% 65%;
+    --accent-foreground: 25 15% 15%;
+
+    /* Status colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 158 45% 45%;
+    --success-foreground: 0 0% 98%;
+
+    /* UI elements */
+    --border: 32 25% 88%;
+    --input: 32 25% 88%;
+    --ring: 158 45% 25%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-hover)));
+    --gradient-warm: linear-gradient(135deg, hsl(32 85% 75%), hsl(32 85% 65%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(45 10% 94%));
+
+    /* Shadows */
+    --shadow-book: 0 8px 32px -8px hsl(var(--primary) / 0.15);
+    --shadow-elegant: 0 4px 16px -4px hsl(25 15% 15% / 0.1);
+    --shadow-hover: 0 12px 40px -12px hsl(var(--primary) / 0.25);
+
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-3d: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* 3D Effects */
+    --perspective: 1000px;
+    --book-depth: 20px;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 158 20% 8%;
+    --foreground: 45 15% 92%;
+    --card: 158 15% 12%;
+    --card-foreground: 45 15% 92%;
+    --primary: 158 45% 35%;
+    --primary-foreground: 45 15% 97%;
+    --secondary: 32 15% 20%;
+    --secondary-foreground: 45 15% 92%;
+    --muted: 158 10% 15%;
+    --muted-foreground: 45 10% 60%;
+    --accent: 32 85% 55%;
+    --accent-foreground: 25 15% 15%;
+    --border: 158 15% 20%;
+    --input: 158 15% 20%;
+    --ring: 158 45% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-[var(--font-body)];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-[var(--font-heading)];
+  }
+}
+
+@layer components {
+  .book-shadow {
+    box-shadow: var(--shadow-book);
+  }
+
+  .book-shadow:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  .transition-3d {
+    transition: var(--transition-3d);
+  }
+
+  .book-3d {
+    perspective: var(--perspective);
+    transform-style: preserve-3d;
+  }
+
+  .book-hover-lift {
+    transform: translateY(-8px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 0 20px 40px -15px hsl(var(--primary) / 0.4);
+  }
+
+  .page-flip {
+    animation: pageFlip 0.8s ease-in-out;
+  }
+
+  @keyframes pageFlip {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(-90deg); }
+    100% { transform: rotateY(0deg); }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-effect:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+  }
+
+  /* Premium Mystery Card Effects */
+  .mystery-card {
+    transform-style: preserve-3d;
+    perspective: 1200px;
+  }
+
+  .mystery-card:hover {
+    transform: rotateY(-8deg) rotateX(4deg) translateZ(20px);
+  }
+
+  .mystery-container {
+    backface-visibility: hidden;
+  }
+
+  .mystery-image {
+    transform-origin: center;
+  }
+
+  .mystery-hover-transform {
+    transform: scale(1.05) rotateZ(1deg);
+    filter: brightness(1.1) contrast(1.1);
+  }
+
+  .mystery-overlay {
+    backdrop-filter: blur(0.5px);
+  }
+
+  .mystery-card:hover .mystery-overlay {
+    background: radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.15), transparent 70%);
+  }
+
+  .mystery-badge {
+    transform: translateY(-10px) scale(0.8);
+    filter: blur(2px);
+  }
+
+  .mystery-card:hover .mystery-badge {
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    animation: mysteryReveal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .mystery-rating {
+    transform: translateX(20px) scale(0.8);
+    filter: blur(2px);
+  }
+
+  .mystery-card:hover .mystery-rating {
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+
+  .mystery-controls {
+    transform: translateY(20px) scale(0.8);
+    filter: blur(2px);
+  }
+
+  .mystery-card:hover .mystery-controls {
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  .mystery-extended-desc {
+    backdrop-filter: blur(1px);
+  }
+
+  .mystery-text-reveal {
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground)), transparent);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: textReveal 2s ease-in-out infinite;
+  }
+
+  @keyframes mysteryReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.5) rotateZ(-10deg);
+      filter: blur(5px);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateY(-5px) scale(1.1) rotateZ(2deg);
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateZ(0deg);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes textReveal {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Premium elements */
+  .premium-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4), inset 0 1px 0 hsl(var(--primary-foreground) / 0.2);
+  }
+
+  .premium-button {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.2);
+    border: 1px solid hsl(var(--primary) / 0.3);
+  }
+
+  .premium-button:hover {
+    box-shadow: 0 6px 20px hsl(var(--primary) / 0.3);
+    border-color: hsl(var(--primary) / 0.5);
+  }
+
+  .premium-cart-button {
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 15px hsl(var(--primary) / 0.4);
+    border: none;
+  }
+
+  .premium-cart-button:hover {
+    box-shadow: 0 6px 25px hsl(var(--primary) / 0.6);
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .premium-price {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+    filter: drop-shadow(0 2px 4px hsl(var(--primary) / 0.2));
+  }
+
+  .premium-3d-container {
+    background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.1), transparent 50%);
+  }
+
+  /* Utility classes for gradients */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+}
